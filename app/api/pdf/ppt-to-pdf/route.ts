@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     }
 
     const ext = file.name.endsWith('.ppt') ? '.ppt' : '.pptx'
-    tmpIn  = join(tmpdir(), `pdfpro-ppt-${Date.now()}${ext}`)
+    tmpIn  = join(tmpdir(), `PDFEdit24x7-ppt-${Date.now()}${ext}`)
     tmpOut = tmpIn.replace(/\.pptx?$/i, '.pdf')
 
     const inputBuffer = Buffer.from(await file.arrayBuffer())

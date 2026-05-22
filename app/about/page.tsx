@@ -4,8 +4,8 @@ import Footer from '@/components/Footer'
 import { Shield, Zap, Globe, Heart } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'About PDFPro – Our Mission',
-  description: 'PDFPro is a free online PDF toolkit built to make working with PDFs simple, fast, and private for everyone.',
+  title: 'About PDFEdit24x7 – Our Mission',
+  description: 'PDFEdit24x7 is a free online PDF toolkit built to make working with PDFs simple, fast, and private for everyone.',
 }
 
 const values = [
@@ -30,7 +30,7 @@ const values = [
   {
     icon: Globe,
     title: 'Free for Everyone',
-    description: 'PDFPro is free to use — for students, professionals, and businesses in any country.',
+    description: 'PDFEdit24x7 is free to use — for students, professionals, and businesses in any country.',
     color: 'text-brand-600', bg: 'bg-brand-50',
   },
 ]
@@ -48,7 +48,7 @@ export default function AboutPage() {
             Making PDF Tools Simple,<br />Fast, and Free
           </h1>
           <p className="text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto">
-            PDFPro started from a simple frustration: why do PDF tools have to be bloated, expensive, or filled with traps? We built the tool we always wanted — clean, instant, and honest.
+            PDFEdit24x7 started from a simple frustration: why do PDF tools have to be bloated, expensive, or filled with traps? We built the tool we always wanted — clean, instant, and honest.
           </p>
         </section>
 
@@ -94,3 +94,4 @@ export default function AboutPage() {
     </>
   )
 }
+

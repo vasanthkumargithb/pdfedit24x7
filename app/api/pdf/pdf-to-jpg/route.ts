@@ -9,7 +9,7 @@ const execFileAsync = promisify(execFile)
 const GS_PATH = 'C:\\Program Files\\gs\\gs10.07.0\\bin\\gswin64c.exe'
 
 export async function POST(request: NextRequest) {
-  const tmpDir = join(tmpdir(), `pdfpro-jpg-${Date.now()}`)
+  const tmpDir = join(tmpdir(), `PDFEdit24x7-jpg-${Date.now()}`)
 
   try {
     const formData = await request.formData()
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
     }
 
     const inputBuffer = Buffer.from(await file.arrayBuffer())
-    const tmpIn = join(tmpdir(), `pdfpro-in-${Date.now()}.pdf`)
+    const tmpIn = join(tmpdir(), `PDFEdit24x7-in-${Date.now()}.pdf`)
     await mkdir(tmpDir, { recursive: true })
     await writeFile(tmpIn, inputBuffer)
 

@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData()
     const file = formData.get('files') as File
-    const text = (formData.get('text') as string) || 'PDFPRO'
+    const text = (formData.get('text') as string) || 'PDFEdit24x7'
 
     if (!file) {
       return NextResponse.json({ error: 'No file uploaded' }, { status: 400 })
@@ -43,3 +43,4 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Watermark failed' }, { status: 500 })
   }
 }
+

@@ -78,10 +78,10 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'PDFPro Contact <noreply@pdfpro.app>',
+        from: 'PDFEdit24x7 Contact <noreply@pdfedit24x7.com>',
         to: ['tejdeal.social@gmail.com'],
         reply_to: email,
-        subject: `[PDFPro Contact] ${subject || 'New message'} — from ${name}`,
+        subject: `[PDFEdit24x7 Contact] ${subject || 'New message'} — from ${name}`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 24px;">
             <h2 style="color: #1440e1; margin-bottom: 16px;">New Contact Form Submission</h2>
@@ -108,3 +108,4 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Failed to send message. Please try again.' }, { status: 500 })
   }
 }
+

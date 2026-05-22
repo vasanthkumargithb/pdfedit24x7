@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
     const sofficePath = await findLibreOffice()
     if (sofficePath) {
       try {
-        const tmpIn = join(tmpdir(), `pdfpro-${Date.now()}.docx`)
+        const tmpIn = join(tmpdir(), `PDFEdit24x7-${Date.now()}.docx`)
         await writeFile(tmpIn, inputBuffer)
         await execFileAsync(sofficePath, ['--headless', '--convert-to', 'pdf', '--outdir', tmpdir(), tmpIn])
         const tmpOut = tmpIn.replace(/\.docx$/i, '.pdf')

@@ -20,17 +20,87 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const tool = getToolBySlug(params.tool)
   if (!tool) return {}
 
+  const description = `${tool.longDescription} 100% free, no signup required, no watermarks. Works on any device — Windows, Mac, iPhone, Android.`
+
   return {
     title: `${tool.title} Online – Free, Fast, No Signup`,
-    description: tool.longDescription,
-    keywords: tool.keywords,
-    alternates: { canonical: `https://pdfpro.app/${tool.slug}` },
+    description,
+    keywords: [
+      ...tool.keywords,
+      'free online',
+      'no signup',
+      'no watermark',
+      'pdf tool',
+      'PDFEdit24x7',
+    ],
+    alternates: { canonical: `https://pdfedit24x7.com/${tool.slug}` },
     openGraph: {
-      title: `${tool.title} Online | PDFPro`,
-      description: tool.longDescription,
-      url: `https://pdfpro.app/${tool.slug}`,
+      title: `${tool.title} Online — Free | PDFEdit24x7`,
+      description,
+      url: `https://pdfedit24x7.com/${tool.slug}`,
+      siteName: 'PDFEdit24x7',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary',
+      title: `${tool.title} Online — Free | PDFEdit24x7`,
+      description,
     },
   }
+}
+
+// Tool-specific FAQs for SEO rich results
+function getToolFAQ(slug: string): { q: string; a: string }[] {
+  const common = [
+    { q: 'Is this tool completely free?', a: 'Yes, PDFEdit24x7 is 100% free. No signup, no subscription, no hidden fees.' },
+    { q: 'How long are my files stored?', a: 'Your files are automatically and permanently deleted from our servers within 1 hour of processing.' },
+    { q: 'Is it safe to upload my files?', a: 'Yes. All file transfers are SSL encrypted. We never read, share, or store your file contents.' },
+  ]
+
+  const specific: Record<string, { q: string; a: string }[]> = {
+    'merge-pdf': [
+      { q: 'How many PDFs can I merge at once?', a: 'You can merge up to 20 PDF files at once with PDFEdit24x7.' },
+      { q: 'Can I rearrange pages before merging?', a: 'Yes, you can drag and drop files to reorder them before merging.' },
+      ...common,
+    ],
+    'split-pdf': [
+      { q: 'Can I split specific pages from a PDF?', a: 'Yes, you can extract any range of pages or split into individual pages.' },
+      { q: 'Will the quality be affected when splitting?', a: 'No, splitting does not affect the quality of your PDF.' },
+      ...common,
+    ],
+    'compress-pdf': [
+      { q: 'How much will my PDF be compressed?', a: 'Compression varies by file, but most PDFs are reduced by 30-70% while maintaining readability.' },
+      { q: 'Will compression affect image quality?', a: 'We use smart compression that balances file size and visual quality.' },
+      ...common,
+    ],
+    'pdf-to-word': [
+      { q: 'Will the formatting be preserved?', a: 'Yes, PDFEdit24x7 preserves fonts, layouts, and formatting when converting to Word.' },
+      { q: 'What Word format does it convert to?', a: 'Files are converted to .docx format, compatible with Microsoft Word 2007 and later.' },
+      ...common,
+    ],
+    'word-to-pdf': [
+      { q: 'What Word file types are supported?', a: 'Both .doc and .docx formats are supported.' },
+      { q: 'Will my Word formatting be kept in the PDF?', a: 'Yes, all formatting, images, and layouts are preserved in the output PDF.' },
+      ...common,
+    ],
+    'pdf-to-jpg': [
+      { q: 'What resolution are the output images?', a: 'You can choose from 72 DPI to 300 DPI depending on your needs.' },
+      { q: 'Can I convert all pages at once?', a: 'Yes, all pages are converted and available for individual download.' },
+      ...common,
+    ],
+    'image-to-pdf': [
+      { q: 'What image formats are supported?', a: 'JPG, PNG, WebP, and TIFF images are supported.' },
+      { q: 'Can I combine multiple images into one PDF?', a: 'Yes, upload multiple images and they will be combined into a single PDF.' },
+      ...common,
+    ],
+    'protect-pdf': [
+      { q: 'What type of encryption is used?', a: 'PDFEdit24x7 uses 128-bit AES encryption to protect your PDF.' },
+      { q: 'Can I remove the password later?', a: 'Yes, you can use a PDF unlock tool with the correct password to remove protection.' },
+      ...common,
+    ],
+  }
+
+  return specific[slug] || common
 }
 
 export default function ToolPage({ params }: Props) {
@@ -38,10 +108,29 @@ export default function ToolPage({ params }: Props) {
   if (!tool) notFound()
 
   const otherTools = tools.filter(t => t.slug !== tool.slug).slice(0, 4)
+  const faqs = getToolFAQ(tool.slug)
+
+  // FAQ Schema for Google rich results
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  }
 
   return (
     <>
       <Navbar />
+
+      {/* FAQ Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       <main className="min-h-screen bg-surface-50">
 
         {/* Hero Section */}
@@ -71,13 +160,11 @@ export default function ToolPage({ params }: Props) {
                 <h1 className="font-display font-700 text-3xl sm:text-4xl text-slate-900 mb-2">
                   {tool.title} Online
                 </h1>
-                <p className="text-slate-500 text-lg">
-                  {tool.longDescription}
-                </p>
+                <p className="text-slate-500 text-lg">{tool.longDescription}</p>
               </div>
             </div>
 
-            {/* Upload Box — all tools now active */}
+            {/* Upload Box */}
             <div className="bg-white rounded-3xl shadow-card border border-surface-100 p-6 sm:p-8">
               <FileUpload tool={tool} />
             </div>
@@ -88,12 +175,12 @@ export default function ToolPage({ params }: Props) {
         {/* FAQ Section */}
         <section className="py-16">
           <div className="max-w-3xl mx-auto px-4">
-            <h2 className="text-2xl font-bold mb-6">About This Tool</h2>
+            <h2 className="font-display font-700 text-2xl text-slate-900 mb-6">Frequently Asked Questions</h2>
             <div className="grid gap-4">
-              {toolFAQ(tool.slug).map(({ q, a }) => (
-                <div key={q} className="bg-white p-5 rounded-xl border">
-                  <h3 className="font-semibold">{q}</h3>
-                  <p className="text-sm text-gray-500">{a}</p>
+              {faqs.map(({ q, a }) => (
+                <div key={q} className="bg-white p-5 rounded-xl border border-surface-100 shadow-sm">
+                  <h3 className="font-semibold text-slate-800 mb-1">{q}</h3>
+                  <p className="text-sm text-slate-500 leading-relaxed">{a}</p>
                 </div>
               ))}
             </div>
@@ -103,29 +190,25 @@ export default function ToolPage({ params }: Props) {
         {/* More Tools */}
         <section className="py-12">
           <div className="max-w-3xl mx-auto px-4">
-            <h2 className="text-lg font-semibold mb-5">More PDF Tools</h2>
+            <h2 className="font-display font-600 text-lg text-slate-800 mb-5">More PDF Tools</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {otherTools.map(t => (
-                <Link key={t.slug} href={`/${t.slug}`} className="p-4 border rounded-xl text-center hover:shadow">
+                <Link key={t.slug} href={`/${t.slug}`}
+                  className="p-4 bg-white border border-surface-100 rounded-xl text-center hover:shadow-md hover:border-brand-200 transition-all">
                   <div className={`w-9 h-9 mx-auto mb-2 rounded-lg ${t.color} flex items-center justify-center`}>
                     <ToolIcon name={t.icon} color={t.iconColor} size={16} />
                   </div>
-                  <span className="text-xs font-semibold">{t.shortTitle}</span>
+                  <span className="text-xs font-semibold text-slate-700">{t.shortTitle}</span>
                 </Link>
               ))}
             </div>
           </div>
         </section>
-</main>
+
+      </main>
       <Footer />
     </>
   )
 }
 
-function toolFAQ(slug: string) {
-  return [
-    { q: 'Is this tool free?', a: 'Yes, completely free.' },
-    { q: 'How long are files stored?', a: 'Files are deleted within 1 hour.' },
-    { q: 'Is it safe?', a: 'Yes, secure processing with encryption.' },
-  ]
-}
+

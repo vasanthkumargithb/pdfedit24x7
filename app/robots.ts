@@ -9,7 +9,8 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/_next/'],
       },
     ],
-    sitemap: 'https://pdfpro.app/sitemap.xml',
-    host: 'https://pdfpro.app',
+    sitemap: 'https://pdfedit24x7.com/sitemap.xml',
+    host: 'https://pdfedit24x7.com',
   }
 }
+

@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
-import '../styles/globals.css'
+import '@/styles/globals.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://pdfpro.app'),
+  metadataBase: new URL('https://pdfedit24x7.com'),
   title: {
-    default: 'PDFPro – Free Online PDF Tools | Merge, Split, Compress, Convert PDF',
-    template: '%s | PDFPro – Free Online PDF Tools',
+    default: 'PDFEdit24x7 – Free Online PDF Tools | Merge, Split, Compress, Convert PDF',
+    template: '%s | PDFEdit24x7 – Free Online PDF Tools',
   },
   description:
-    'PDFPro offers 20+ free online PDF tools: merge, split, compress, convert PDF to Word, Excel, PowerPoint, JPG, and more. Edit, sign, watermark PDFs instantly. Fast, secure, no signup required.',
+    'PDFEdit24x7 offers 20+ free online PDF tools: merge, split, compress, convert PDF to Word, Excel, PowerPoint, JPG, and more. Edit, sign, watermark PDFs instantly. Fast, secure, no signup required.',
   keywords: [
     'pdf tools online',
     'free pdf tools',
@@ -35,21 +35,21 @@ export const metadata: Metadata = {
     'extract pages pdf',
     'add page numbers pdf',
   ],
-  authors: [{ name: 'PDFPro' }],
-  creator: 'PDFPro',
+  authors: [{ name: 'PDFEdit24x7' }],
+  creator: 'PDFEdit24x7',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://pdfpro.app',
-    siteName: 'PDFPro',
-    title: 'PDFPro – 20+ Free Online PDF Tools',
+    url: 'https://pdfedit24x7.com',
+    siteName: 'PDFEdit24x7',
+    title: 'PDFEdit24x7 – 20+ Free Online PDF Tools',
     description:
       'Merge, split, compress, convert, edit and sign PDFs online for free. No signup, no watermarks, no limits.',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'PDFPro – Free Online PDF Tools' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'PDFEdit24x7 – Free Online PDF Tools' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PDFPro – 20+ Free Online PDF Tools',
+    title: 'PDFEdit24x7 – 20+ Free Online PDF Tools',
     description: 'Merge, split, compress, convert, edit and sign PDFs online for free.',
     images: ['/og-image.png'],
   },
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    apple: '/apple-icon.png',
   },
 }
 
@@ -100,8 +100,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'WebApplication',
-              name: 'PDFPro',
-              url: 'https://pdfpro.app',
+              name: 'PDFEdit24x7',
+              url: 'https://pdfedit24x7.com',
               description: '20+ free online PDF tools – merge, split, compress, convert, edit and sign PDFs',
               applicationCategory: 'UtilitiesApplication',
               operatingSystem: 'Any',
@@ -121,3 +121,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
+
+
+
+

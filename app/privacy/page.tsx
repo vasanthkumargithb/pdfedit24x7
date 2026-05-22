@@ -3,8 +3,8 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | PDFPro',
-  description: 'Learn how PDFPro handles your data and protects your privacy.',
+  title: 'Privacy Policy | PDFEdit24x7',
+  description: 'Learn how PDFEdit24x7 handles your data and protects your privacy.',
 }
 
 export default function PrivacyPage() {
@@ -19,7 +19,7 @@ export default function PrivacyPage() {
           <div className="prose prose-slate max-w-none space-y-8">
             <section>
               <h2 className="font-display font-600 text-xl text-slate-900 mb-3">1. Data We Collect</h2>
-              <p className="text-slate-600 leading-relaxed">PDFPro does not require account creation. When you use our tools, we temporarily process your uploaded files on our servers to perform the requested operation. We do not store, read, or analyze the content of your documents.</p>
+              <p className="text-slate-600 leading-relaxed">PDFEdit24x7 does not require account creation. When you use our tools, we temporarily process your uploaded files on our servers to perform the requested operation. We do not store, read, or analyze the content of your documents.</p>
             </section>
 
             <section>
@@ -39,7 +39,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="font-display font-600 text-xl text-slate-900 mb-3">5. Contact</h2>
-              <p className="text-slate-600 leading-relaxed">For any privacy-related questions, contact us at <a href="mailto:privacy@pdfpro.app" className="text-brand-600 hover:underline">privacy@pdfpro.app</a>.</p>
+              <p className="text-slate-600 leading-relaxed">For any privacy-related questions, contact us at <a href="mailto:privacy@pdfedit24x7.com" className="text-brand-600 hover:underline">privacy@pdfedit24x7.com</a>.</p>
             </section>
           </div>
         </div>
@@ -48,3 +48,4 @@ export default function PrivacyPage() {
     </>
   )
 }
+

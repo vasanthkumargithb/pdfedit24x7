@@ -31,8 +31,8 @@ export async function POST(req: NextRequest) {
       const preset = presetMap[quality] ?? '/ebook'
 
       // Write input to temp file
-      const tmpIn = join(tmpdir(), `pdfpro-in-${Date.now()}.pdf`)
-      const tmpOut = join(tmpdir(), `pdfpro-out-${Date.now()}.pdf`)
+      const tmpIn = join(tmpdir(), `PDFEdit24x7-in-${Date.now()}.pdf`)
+      const tmpOut = join(tmpdir(), `PDFEdit24x7-out-${Date.now()}.pdf`)
 
       await writeFile(tmpIn, Buffer.from(await file.arrayBuffer()))
 

@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { ArrowRight, Shield, Zap, Lock } from 'lucide-react'
 
 const stats = [
-  { label: 'PDF Tools Available', value: '20+' },
-  { label: 'Files Processed', value: '10K+' },
+  { label: 'PDF Tools Available', value: '25+' },
   { label: 'Always Free', value: '100%' },
+  { label: 'No Signup Needed', value: '✓' },
 ]
 
 const trust = [
@@ -16,14 +16,17 @@ const trust = [
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white pt-28 pb-20 lg:pt-36 lg:pb-28">
+    <section
+      className="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-28"
+      style={{ background: 'linear-gradient(135deg, #f0f4ff 0%, #faf5ff 40%, #f0f9ff 100%)' }}
+    >
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-b from-brand-50/80 to-transparent rounded-b-[50%]" />
-        <div className="absolute top-20 right-[10%] w-64 h-64 bg-violet-50 rounded-full blur-3xl opacity-60" />
-        <div className="absolute top-40 left-[8%] w-48 h-48 bg-sky-50 rounded-full blur-3xl opacity-70" />
-        {/* Grid pattern */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.03]" xmlns="http://www.w3.org/2000/svg">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-b from-brand-100/60 to-transparent rounded-b-[50%]" />
+        <div className="absolute top-20 right-[10%] w-72 h-72 bg-violet-100 rounded-full blur-3xl opacity-50" />
+        <div className="absolute top-40 left-[8%] w-56 h-56 bg-sky-100 rounded-full blur-3xl opacity-60" />
+        <div className="absolute bottom-10 right-[20%] w-40 h-40 bg-brand-100 rounded-full blur-2xl opacity-40" />
+        <svg className="absolute inset-0 w-full h-full opacity-[0.04]" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
               <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1440e1" strokeWidth="1"/>
@@ -36,7 +39,7 @@ export default function Hero() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-50 border border-brand-100 rounded-full mb-6 animate-fade-in">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-brand-100 rounded-full mb-6 shadow-sm animate-fade-in">
           <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" />
           <span className="text-xs font-semibold text-brand-700 tracking-wide uppercase">100% Free · No Signup Required</span>
         </div>
@@ -70,16 +73,16 @@ export default function Hero() {
           </Link>
           <Link
             href="/compress-pdf"
-            className="px-6 py-3.5 bg-white text-slate-700 font-semibold rounded-xl border border-surface-200 hover:border-surface-300 hover:bg-surface-50 transition-all shadow-card"
+            className="px-6 py-3.5 bg-white text-slate-700 font-semibold rounded-xl border border-surface-200 hover:border-brand-300 hover:bg-brand-50 transition-all shadow-card"
           >
             Compress PDF — Start Now
           </Link>
         </div>
 
         {/* Trust badges */}
-        <div className="flex flex-wrap justify-center gap-6 mb-16 animate-fade-up" style={{ animationDelay: '200ms' }}>
+        <div className="flex flex-wrap justify-center gap-4 mb-16 animate-fade-up" style={{ animationDelay: '200ms' }}>
           {trust.map(({ icon: Icon, label }) => (
-            <div key={label} className="flex items-center gap-2 text-sm text-slate-500">
+            <div key={label} className="flex items-center gap-2 text-sm text-slate-500 bg-white px-4 py-2 rounded-full shadow-sm border border-slate-100">
               <Icon className="w-4 h-4 text-emerald-500" />
               <span>{label}</span>
             </div>

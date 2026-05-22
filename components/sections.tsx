@@ -105,7 +105,7 @@ export function Features() {
 
         <div className="text-center mb-14">
           <h2 className="font-display font-700 text-3xl sm:text-4xl text-slate-900 mb-4">
-            Why Thousands Choose PDFPro
+            Why Thousands Choose PDFEdit24x7
           </h2>
           <p className="text-lg text-slate-500 max-w-lg mx-auto">
             Built for professionals, accessible to everyone.
@@ -127,3 +127,5 @@ export function Features() {
     </section>
   )
 }
+
+

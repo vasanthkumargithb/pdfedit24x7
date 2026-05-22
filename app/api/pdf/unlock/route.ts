@@ -21,8 +21,8 @@ export async function POST(request: NextRequest) {
     }
 
     const inputBuffer = Buffer.from(await file.arrayBuffer())
-    tmpIn = join(tmpdir(), `pdfpro-in-${Date.now()}.pdf`)
-    tmpOut = join(tmpdir(), `pdfpro-out-${Date.now()}.pdf`)
+    tmpIn = join(tmpdir(), `PDFEdit24x7-in-${Date.now()}.pdf`)
+    tmpOut = join(tmpdir(), `PDFEdit24x7-out-${Date.now()}.pdf`)
 
     await writeFile(tmpIn, inputBuffer)
 

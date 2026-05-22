@@ -288,6 +288,68 @@ export default function ToolOptions({ tool, options, onChange }: ToolOptionsProp
         </div>
       )
 
+      case 'image-enhance':
+  return (
+    <div className="mb-5 p-4 bg-surface-50 rounded-xl border border-surface-100">
+      <label className="block text-xs font-semibold text-slate-600 mb-3">Enhancement Mode</label>
+      <div className="grid grid-cols-2 gap-2">
+        {[
+          { value: 'auto',    label: '⚡ Auto Fix',        desc: 'Smart document fix' },
+          { value: 'shadow', label: '🌟 Remove Shadow', desc: 'Remove dark edges & shadows' },
+          { value: 'enhance', label: '🔆 High Contrast',   desc: 'Darker text, whiter background' },
+          { value: 'bw',      label: '⬛ Black & White',   desc: 'Pure B&W document' },
+        ].map(opt => (
+          <button
+            key={opt.value}
+            type="button"
+            onClick={() => onChange('mode', opt.value)}
+            className={`p-3 rounded-lg border text-left transition-all ${
+              (options.mode ?? 'auto') === opt.value
+                ? 'bg-brand-600 text-white border-brand-600'
+                : 'bg-white text-slate-600 border-surface-200 hover:border-brand-300'
+            }`}
+          >
+            <div className="text-sm font-semibold">{opt.label}</div>
+            <div className={`text-xs mt-0.5 ${(options.mode ?? 'auto') === opt.value ? 'text-brand-200' : 'text-slate-400'}`}>
+              {opt.desc}
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+
+  // Add this case to ToolOptions.tsx before default: return null
+
+case 'auto-edge-detect':
+  return (
+    <div className="mb-5 p-4 bg-surface-50 rounded-xl border border-surface-100">
+      <label className="block text-xs font-semibold text-slate-600 mb-3">Output Format</label>
+      <div className="flex gap-3">
+        {[
+          { value: 'pdf', label: '📄 Save as PDF', desc: 'Best for documents' },
+          { value: 'jpg', label: '🖼️ Save as JPG', desc: 'Best for images' },
+        ].map(opt => (
+          <button
+            key={opt.value}
+            type="button"
+            onClick={() => onChange('output', opt.value)}
+            className={`flex-1 p-3 rounded-lg border text-left transition-all ${
+              (options.output ?? 'pdf') === opt.value
+                ? 'bg-brand-600 text-white border-brand-600'
+                : 'bg-white text-slate-600 border-surface-200 hover:border-brand-300'
+            }`}
+          >
+            <div className="text-sm font-semibold">{opt.label}</div>
+            <div className={`text-xs mt-0.5 ${(options.output ?? 'pdf') === opt.value ? 'text-brand-200' : 'text-slate-400'}`}>
+              {opt.desc}
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+
     default:
       return null
   }

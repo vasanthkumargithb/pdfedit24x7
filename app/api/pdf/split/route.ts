@@ -59,3 +59,4 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Failed to split PDF. Please ensure the file is a valid PDF.' }, { status: 500 })
   }
 }
+

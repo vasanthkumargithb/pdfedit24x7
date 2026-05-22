@@ -54,7 +54,7 @@ export default function Footer() {
                 <FileText className="w-5 h-5 text-white" strokeWidth={2.5} />
               </div>
               <span className="font-display font-700 text-xl text-white">
-                PDF<span className="text-brand-400">Pro</span>
+                PDF<span className="text-brand-400">Edit24x7</span>
               </span>
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed">
@@ -120,7 +120,7 @@ export default function Footer() {
       <div className="bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-slate-600">
-            © {new Date().getFullYear()} PDFPro. All rights reserved.
+            © {new Date().getFullYear()} PDFEdit24x7. All rights reserved.
           </p>
           <div className="flex items-center gap-2 text-xs text-slate-600">
             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -132,3 +132,5 @@ export default function Footer() {
     </footer>
   )
 }
+
+

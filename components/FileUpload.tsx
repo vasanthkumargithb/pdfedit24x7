@@ -91,17 +91,22 @@ export default function FileUpload({ tool }: FileUploadProps) {
   }, [addFiles])
 
   const getOutputMeta = () => {
-  switch (tool.slug) {
-    case 'pdf-to-jpg':   return { name: 'converted.jpg',  mime: 'image/jpeg' }
-    case 'pdf-to-word':  return { name: 'converted.docx', mime: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' }
-    case 'pdf-to-ppt':   return { name: 'converted.pptx', mime: 'application/vnd.openxmlformats-officedocument.presentationml.presentation' }
-    case 'pdf-to-excel': return { name: 'converted.xlsx', mime: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }
-    case 'ppt-to-pdf':   return { name: 'converted.pdf',  mime: 'application/pdf' }
-    case 'excel-to-pdf': return { name: 'converted.pdf',  mime: 'application/pdf' }
-    case 'word-to-pdf':  return { name: 'converted.pdf',  mime: 'application/pdf' }
-    default:             return { name: `${tool.slug}.pdf`, mime: 'application/pdf' }
+    switch (tool.slug) {
+      case 'pdf-to-jpg':       return { name: 'converted.jpg',  mime: 'image/jpeg' }
+      case 'pdf-to-word':      return { name: 'converted.docx', mime: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' }
+      case 'pdf-to-ppt':       return { name: 'converted.pptx', mime: 'application/vnd.openxmlformats-officedocument.presentationml.presentation' }
+      case 'pdf-to-excel':     return { name: 'converted.xlsx', mime: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }
+      case 'ppt-to-pdf':       return { name: 'converted.pdf',  mime: 'application/pdf' }
+      case 'excel-to-pdf':     return { name: 'converted.pdf',  mime: 'application/pdf' }
+      case 'word-to-pdf':      return { name: 'converted.pdf',  mime: 'application/pdf' }
+      case 'ocr-image':        return { name: 'extracted-text.txt', mime: 'text/plain' }
+      case 'pdf-ocr':          return { name: 'searchable.pdf',     mime: 'application/pdf' }
+      case 'image-to-scanner': return { name: 'scanned.pdf',        mime: 'application/pdf' }
+      case 'image-enhance':    return { name: 'enhanced.jpg',       mime: 'image/jpeg' }
+      case 'auto-edge-detect': return { name: 'scanned-document.pdf', mime: 'application/pdf' }
+      default:                 return { name: `${tool.slug}.pdf`,   mime: 'application/pdf' }
+    }
   }
-}
 
   const handleProcess = async () => {
     if (files.length === 0) return
@@ -118,8 +123,8 @@ export default function FileUpload({ tool }: FileUploadProps) {
       setStatus('processing')
 
       const res = await fetch(`/api/pdf/${tool.action}`, { method: 'POST', body: formData })
-      setOriginalSize(res.headers.get("X-Original-Size"))
-      setNewSize(res.headers.get("X-New-Size"))
+      setOriginalSize(res.headers.get('X-Original-Size'))
+      setNewSize(res.headers.get('X-New-Size'))
       clearInterval(tick)
       setProgress(100)
 
@@ -174,6 +179,21 @@ export default function FileUpload({ tool }: FileUploadProps) {
   return (
     <div className="w-full">
 
+      {/* ✅ Always-mounted hidden input — single ref, never duplicated */}
+      <input
+        ref={inputRef}
+        type="file"
+        accept={tool.accept}
+        multiple={tool.maxFiles > 1}
+        className="hidden"
+        onChange={e => {
+          if (e.target.files) {
+            addFiles(e.target.files)
+            e.target.value = '' // reset so same file can be re-added
+          }
+        }}
+      />
+
       {/* Empty Drop Zone */}
       {files.length === 0 && (
         <div
@@ -187,8 +207,6 @@ export default function FileUpload({ tool }: FileUploadProps) {
               ? 'border-brand-400 bg-brand-50 scale-[1.01] shadow-glow'
               : 'border-surface-200 bg-surface-50 hover:border-brand-300 hover:bg-brand-50/40'}`}
         >
-          <input ref={inputRef} type="file" accept={tool.accept} multiple={tool.maxFiles > 1}
-            onChange={e => e.target.files && addFiles(e.target.files)} />
           <div className={`w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center transition-all
             ${isDragging ? 'bg-brand-100 scale-110' : 'bg-white border border-surface-200 shadow-card'}`}>
             <Upload className={`w-7 h-7 ${isDragging ? 'text-brand-600' : 'text-slate-400'}`} />
@@ -252,17 +270,14 @@ export default function FileUpload({ tool }: FileUploadProps) {
             </div>
           ))}
 
+          {/* ✅ Add more files button — uses the always-mounted input above, no duplicate input here */}
           {canAddMore && (
-            <>
-              <button
-                onClick={() => inputRef.current?.click()}
-                className="w-full p-3 border border-dashed border-surface-200 rounded-xl text-sm text-slate-400 hover:border-brand-300 hover:text-brand-600 hover:bg-brand-50/30 transition-all"
-              >
-                + Add more files
-              </button>
-              <input ref={inputRef} type="file" accept={tool.accept} multiple
-                onChange={e => e.target.files && addFiles(e.target.files)} />
-            </>
+            <button
+              onClick={() => inputRef.current?.click()}
+              className="w-full p-3 border border-dashed border-surface-200 rounded-xl text-sm text-slate-400 hover:border-brand-300 hover:text-brand-600 hover:bg-brand-50/30 transition-all"
+            >
+              + Add more files
+            </button>
           )}
         </div>
       )}
@@ -299,9 +314,9 @@ export default function FileUpload({ tool }: FileUploadProps) {
           <p className="text-sm text-slate-500 mb-6">The file will be removed from our servers within 1 hour.</p>
           {originalSize && newSize && (
             <div className="text-sm text-slate-400 mb-4">
-            <p>Original: {formatBytes(Number(originalSize))}</p>
-            <p>Processed: {formatBytes(Number(newSize))}</p>
-          </div>
+              <p>Original: {formatBytes(Number(originalSize))}</p>
+              <p>Processed: {formatBytes(Number(newSize))}</p>
+            </div>
           )}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a

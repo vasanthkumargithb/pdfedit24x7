@@ -5,7 +5,7 @@ const nextConfig = {
       bodySizeLimit: '50mb',
     },
     // ✅ pdf-parse must be external — it reads files at load time and breaks when bundled
-    serverComponentsExternalPackages: ['pdfjs-dist', 'canvas', 'pdf-parse'],
+    serverComponentsExternalPackages: ['pdfjs-dist', 'canvas', 'pdf-parse', 'exceljs', 'sharp', 'tesseract.js'],
   },
   images: {
     formats: ['image/avif', 'image/webp'],

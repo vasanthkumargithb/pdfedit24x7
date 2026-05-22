@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     }
 
     const ext = file.name.endsWith('.xls') ? '.xls' : '.xlsx'
-    const baseName = `pdfpro-excel-${Date.now()}`
+    const baseName = `PDFEdit24x7-excel-${Date.now()}`
     tmpIn    = join(tmpdir(), `${baseName}${ext}`)
     tmpFixed = join(tmpdir(), `${baseName}-fixed.xlsx`)
     pyScript = join(tmpdir(), `${baseName}-fix.py`)

@@ -3,18 +3,18 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | PDFPro',
-  description: 'Read the PDFPro Terms of Service before using our free online PDF tools.',
+  title: 'Terms of Service | PDFEdit24x7',
+  description: 'Read the PDFEdit24x7 Terms of Service before using our free online PDF tools.',
 }
 
 const sections = [
   {
     title: '1. Acceptance of Terms',
-    body: 'By accessing or using PDFPro ("the Service"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Service.',
+    body: 'By accessing or using PDFEdit24x7 ("the Service"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Service.',
   },
   {
     title: '2. Description of Service',
-    body: 'PDFPro provides 20+ free, browser-based PDF processing tools including merging, splitting, compressing, rotating, converting, editing, signing, and watermarking PDF files. Additional tools include PDF to Word, Excel, PowerPoint, and Presentation Maker. The Service is provided "as is" without warranties of any kind.',
+    body: 'PDFEdit24x7 provides 20+ free, browser-based PDF processing tools including merging, splitting, compressing, rotating, converting, editing, signing, and watermarking PDF files. Additional tools include PDF to Word, Excel, PowerPoint, and Presentation Maker. The Service is provided "as is" without warranties of any kind.',
   },
   {
     title: '3. Acceptable Use',
@@ -22,19 +22,19 @@ const sections = [
   },
   {
     title: '4. File Privacy & Deletion',
-    body: 'Files uploaded to PDFPro are processed for the sole purpose of performing the requested operation. All uploaded and processed files are automatically deleted from our servers immediately after download. We do not retain, read, store, or share your file contents with any third party.',
+    body: 'Files uploaded to PDFEdit24x7 are processed for the sole purpose of performing the requested operation. All uploaded and processed files are automatically deleted from our servers immediately after download. We do not retain, read, store, or share your file contents with any third party.',
   },
   {
     title: '5. Intellectual Property',
-    body: 'PDFPro and its original content, features, and functionality are owned by PDFPro and protected by international copyright and trademark laws. You retain full ownership of any files you upload and process.',
+    body: 'PDFEdit24x7 and its original content, features, and functionality are owned by PDFEdit24x7 and protected by international copyright and trademark laws. You retain full ownership of any files you upload and process.',
   },
   {
     title: '6. Limitation of Liability',
-    body: 'PDFPro shall not be liable for any indirect, incidental, special, or consequential damages resulting from your use of the Service. Always keep backups of your original files before processing.',
+    body: 'PDFEdit24x7 shall not be liable for any indirect, incidental, special, or consequential damages resulting from your use of the Service. Always keep backups of your original files before processing.',
   },
   {
     title: '7. No Account Required',
-    body: 'PDFPro does not require you to create an account or provide personal information to use any of its tools. All tools are available freely without registration.',
+    body: 'PDFEdit24x7 does not require you to create an account or provide personal information to use any of its tools. All tools are available freely without registration.',
   },
   {
     title: '8. Changes to Terms',
@@ -42,7 +42,7 @@ const sections = [
   },
   {
     title: '9. Contact',
-    body: 'For questions about these Terms, contact us at legal@pdfpro.app.',
+    body: 'For questions about these Terms, contact us at legal@pdfedit24x7.com.',
   },
 ]
 
@@ -67,7 +67,7 @@ export default function TermsPage() {
           {/* Intro box */}
           <div className="bg-brand-50 border border-brand-100 rounded-2xl p-5 mb-10">
             <p className="text-sm text-brand-800 leading-relaxed">
-              Please read these Terms carefully before using PDFPro. By using our tools,
+              Please read these Terms carefully before using PDFEdit24x7. By using our tools,
               you agree to these terms. Our tools are 100% free, require no signup, and
               your files are never stored permanently.
             </p>
@@ -87,8 +87,8 @@ export default function TermsPage() {
           <div className="mt-12 p-5 bg-surface-50 rounded-2xl border border-surface-100 text-center">
             <p className="text-sm text-slate-500">
               Have questions? Contact us at{' '}
-              <a href="mailto:legal@pdfpro.app" className="text-brand-600 hover:underline font-medium">
-                legal@pdfpro.app
+              <a href="mailto:legal@pdfedit24x7.com" className="text-brand-600 hover:underline font-medium">
+                legal@pdfedit24x7.com
               </a>
             </p>
           </div>
@@ -99,3 +99,4 @@ export default function TermsPage() {
     </>
   )
 }
+

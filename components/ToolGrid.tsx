@@ -7,7 +7,9 @@ import { ToolIcon } from './Navbar'
 function ToolCard({ tool }: { tool: Tool }) {
   return (
     <Link href={`/${tool.slug}`} className="group block">
-      <div className="relative bg-white rounded-2xl p-5 border border-surface-100 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-200 h-full gradient-border">
+      <div className={`relative bg-white rounded-2xl p-5 border border-surface-100 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-200 h-full overflow-hidden`}>
+        {/* Colored left border accent */}
+        <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl" style={{ backgroundColor: tool.iconColor }} />
         <div className={`w-11 h-11 rounded-xl ${tool.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-200`}>
           <ToolIcon name={tool.icon} color={tool.iconColor} size={20} />
         </div>
@@ -25,26 +27,26 @@ function ToolCard({ tool }: { tool: Tool }) {
   )
 }
 
-// ✅ Ad placeholder component — replace content with real AdSense code after approval
+// ✅ Ad placeholder — invisible until real AdSense code is added
 function AdBox({ label }: { label: string }) {
+  // Returns null (invisible) until you replace with real AdSense code
+  return null
+
+  /* 
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  REPLACE "return null" WITH THIS after Google AdSense approves you:
+
   return (
-    <div className="flex items-center justify-center bg-slate-100 border border-dashed border-slate-300 rounded-2xl text-slate-400 text-xs font-medium">
-      {/* 
-        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        REPLACE THIS DIV WITH ADSENSE CODE
-        after Google AdSense approves you.
-        Example:
-        <ins className="adsbygoogle"
-          style={{ display: 'block' }}
-          data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-          data-ad-slot="XXXXXXXXXX"
-          data-ad-format="auto">
-        </ins>
-        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      */}
-      <span>Ad • {label}</span>
-    </div>
+    <ins className="adsbygoogle"
+      style={{ display: 'block' }}
+      data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+      data-ad-slot="XXXXXXXXXX"
+      data-ad-format="auto"
+      data-full-width-responsive="true">
+    </ins>
   )
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  */
 }
 
 export default function ToolGrid() {
@@ -68,7 +70,7 @@ export default function ToolGrid() {
         {/* ── 3-column layout: Left Ad | Tools | Right Ad ── */}
         <div className="flex gap-6">
 
-          {/* Left Ad — hidden on mobile */}
+          {/* Left Ad — hidden until AdSense is connected */}
           <div className="hidden xl:flex flex-col gap-4 w-36 flex-shrink-0">
             <AdBox label="Left Top" />
             <AdBox label="Left Mid" />
@@ -95,13 +97,13 @@ export default function ToolGrid() {
               }
             )}
 
-            {/* Bottom horizontal ad banner */}
-            <div className="mt-12 h-24">
+            {/* Bottom ad — invisible until AdSense connected */}
+            <div className="mt-12">
               <AdBox label="Bottom Banner" />
             </div>
           </div>
 
-          {/* Right Ad — hidden on mobile */}
+          {/* Right Ad — hidden until AdSense is connected */}
           <div className="hidden xl:flex flex-col gap-4 w-36 flex-shrink-0">
             <AdBox label="Right Top" />
             <AdBox label="Right Mid" />

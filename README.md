@@ -1,4 +1,4 @@
-# PDFPro — Free Online PDF Tools
+# PDFEdit24x7 — Free Online PDF Tools
 
 A production-ready, SEO-optimized PDF tools web application built with **Next.js 14**, **Tailwind CSS**, and **pdf-lib**.
 
@@ -7,7 +7,7 @@ A production-ready, SEO-optimized PDF tools web application built with **Next.js
 ## 📁 Folder Structure
 
 ```
-pdfpro/
+PDFEdit24x7/
 ├── app/                          # Next.js App Router
 │   ├── layout.tsx                # Root layout — global SEO metadata, fonts
 │   ├── page.tsx                  # Home page
@@ -61,11 +61,11 @@ pdfpro/
 ### Step 1 — Clone / download the project
 ```bash
 # If using git:
-git clone https://github.com/yourname/pdfpro.git
-cd pdfpro
+git clone https://github.com/yourname/PDFEdit24x7.git
+cd PDFEdit24x7
 
 # Or just cd into the folder you created:
-cd pdfpro
+cd PDFEdit24x7
 ```
 
 ### Step 2 — Install dependencies
@@ -174,8 +174,8 @@ sudo apt-get install -y nodejs
 sudo npm install -g pm2
 
 # 3. Clone your project
-git clone https://github.com/yourname/pdfpro.git /var/www/pdfpro
-cd /var/www/pdfpro
+git clone https://github.com/yourname/PDFEdit24x7.git /var/www/PDFEdit24x7
+cd /var/www/PDFEdit24x7
 
 # 4. Install deps and build
 npm install
@@ -184,7 +184,7 @@ cp .env.example .env.local
 npm run build
 
 # 5. Start with PM2
-pm2 start npm --name "pdfpro" -- start
+pm2 start npm --name "PDFEdit24x7" -- start
 pm2 save
 pm2 startup
 
@@ -192,7 +192,7 @@ pm2 startup
 sudo apt install nginx -y
 ```
 
-**Nginx config** (`/etc/nginx/sites-available/pdfpro`):
+**Nginx config** (`/etc/nginx/sites-available/PDFEdit24x7`):
 ```nginx
 server {
     listen 80;
@@ -215,7 +215,7 @@ server {
 
 ```bash
 # Enable and add SSL with Certbot
-sudo ln -s /etc/nginx/sites-available/pdfpro /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/PDFEdit24x7 /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 sudo apt install certbot python3-certbot-nginx -y
 sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
@@ -289,3 +289,4 @@ Hostinger's shared plans don't support Node.js natively. Use **Hostinger VPS** (
 ## 📄 License
 
 MIT — free to use, modify, and deploy commercially.
+
