@@ -76,20 +76,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
 
-        {/* Google Analytics — replace G-XXXXXXXXXX with your real ID */}
+        {/* Google Analytics — replace G-KQCX16RJ9Q with your real ID */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
               j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+              'https://www.googletagmanager.com/gtag/js?id=G-KQCX16RJ9Q';
               f.parentNode.insertBefore(j,f);
               window.dataLayer=window.dataLayer||[];
               function gtag(){dataLayer.push(arguments);}
               gtag('js',new Date());
-              gtag('config','G-XXXXXXXXXX');
-              })(window,document,'script','dataLayer','G-XXXXXXXXXX');
+              gtag('config','G-KQCX16RJ9Q');
+              })(window,document,'script','dataLayer','G-KQCX16RJ9Q');
             `,
           }}
         />
@@ -122,6 +122,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
+
 
 
 
