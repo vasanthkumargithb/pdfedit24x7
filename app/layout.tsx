@@ -3,6 +3,7 @@ import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://pdfedit24x7.com'),
+  verification: { google: '4J71s0RKFWJEdWiV6qzIf8ZC7xRhatemqSe6-7xdI6Y' },
   title: {
     default: 'PDFEdit24x7 – Free Online PDF Tools | Merge, Split, Compress, Convert PDF',
     template: '%s | PDFEdit24x7 – Free Online PDF Tools',
@@ -121,6 +122,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
+
 
 
 
