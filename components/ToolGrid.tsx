@@ -25,7 +25,7 @@ function ToolCard({ tool }: { tool: Tool }) {
       >
         <div
           className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-200 shadow-md"
-          style={{ backgroundColor: tool.iconColor, opacity: 0.92 }}
+          style={{ backgroundColor: tool.iconColor, opacity: 0.8 }}
         >
           <ToolIcon name={tool.icon} color="#ffffff" size={22} />
         </div>
@@ -125,3 +125,4 @@ export default function ToolGrid() {
     </section>
   )
 }
+
