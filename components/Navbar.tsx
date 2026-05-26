@@ -1,8 +1,12 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { Menu, X, FileText, ChevronDown, Search, ArrowRight } from 'lucide-react'
-import { tools } from '@/lib/tools'
+import { Menu, X, FileText, ChevronDown, Search, ArrowRight, Sparkles } from 'lucide-react'
+import { tools, categories, getToolsByCategory } from '@/lib/tools'
+import type { Tool } from '@/lib/tools'
+
+const POPULAR = ['Merge PDF', 'Compress PDF', 'PDF to Word', 'PDF to JPG']
+const CATEGORY_ORDER: Tool['category'][] = ['organize', 'convert', 'optimize', 'create']
 
 function SearchModal({ onClose }: { onClose: () => void }) {
   const [query, setQuery] = useState('')
@@ -30,7 +34,7 @@ function SearchModal({ onClose }: { onClose: () => void }) {
     <>
       {/* Full screen backdrop */}
       <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+        className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"
         style={{ zIndex: 9998 }}
         onClick={onClose}
       />
@@ -42,7 +46,7 @@ function SearchModal({ onClose }: { onClose: () => void }) {
       >
         {/* Search input */}
         <div className="flex items-center gap-3 bg-white px-5 py-4 rounded-2xl shadow-2xl border border-slate-200">
-          <Search className="w-5 h-5 text-slate-400 flex-shrink-0" />
+          <Search className="w-5 h-5 text-brand-500 flex-shrink-0" />
           <input
             ref={inputRef}
             type="text"
@@ -91,7 +95,7 @@ function SearchModal({ onClose }: { onClose: () => void }) {
           <div className="mt-2 bg-white rounded-2xl shadow-2xl border border-slate-100 p-4">
             <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-3">Popular Tools</p>
             <div className="flex flex-wrap gap-2">
-              {['Merge PDF', 'Compress PDF', 'PDF to Word', 'Split PDF', 'PDF to JPG', 'Word to PDF'].map(name => {
+              {POPULAR.map(name => {
                 const tool = tools.find(t => t.title === name)
                 return tool ? (
                   <Link
@@ -130,7 +134,7 @@ export default function Navbar() {
 
       <header
         className={`fixed top-0 left-0 right-0 transition-all duration-300 ${
-          scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-surface-100' : 'bg-transparent'
+          scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200' : 'bg-white border-b border-slate-200'
         }`}
         style={{ zIndex: 9997 }}
       >
@@ -138,8 +142,8 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16">
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center shadow-sm group-hover:bg-brand-700 transition-colors">
+            <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
+              <div className="w-9 h-9 bg-gradient-to-br from-brand-500 to-brand-700 rounded-xl flex items-center justify-center shadow-md shadow-brand-600/20 group-hover:scale-105 transition-transform">
                 <FileText className="w-4 h-4 text-white" strokeWidth={2.5} />
               </div>
               <span className="font-display font-700 text-[1.15rem] text-slate-900">
@@ -148,49 +152,80 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-1">
+            <nav className="hidden lg:flex items-center gap-1">
+              {/* All Tools mega-menu */}
               <div className="relative" onMouseEnter={() => setToolsOpen(true)} onMouseLeave={() => setToolsOpen(false)}>
-                <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-surface-50 transition-all">
+                <button className="flex items-center gap-1 px-3 py-2 text-sm font-bold text-slate-700 hover:text-brand-600 rounded-lg hover:bg-brand-50 transition-all">
                   All Tools
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${toolsOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {toolsOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-2xl shadow-card-hover border border-surface-100 p-2 z-50 max-h-[80vh] overflow-y-auto">
-                    {tools.map(tool => (
-                      <Link
-                        key={tool.slug}
-                        href={`/${tool.slug}`}
-                        className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-surface-50 transition-colors"
-                      >
-                        <div className={`w-7 h-7 rounded-lg ${tool.color} flex items-center justify-center flex-shrink-0`}>
-                          <ToolIcon name={tool.icon} color={tool.iconColor} size={14} />
-                        </div>
-                        <span className="text-sm font-medium text-slate-700">{tool.title}</span>
-                      </Link>
-                    ))}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-[680px] bg-white rounded-2xl shadow-card-hover border border-surface-100 p-5 z-50">
+                    <div className="grid grid-cols-2 gap-x-6 gap-y-5">
+                      {CATEGORY_ORDER.map(catKey => {
+                        const cat = categories[catKey]
+                        const catTools = getToolsByCategory(catKey)
+                        if (!cat || catTools.length === 0) return null
+                        return (
+                          <div key={catKey}>
+                            <div className="text-xs font-bold text-brand-600 uppercase tracking-wider mb-2.5 px-2">{cat.label}</div>
+                            <div className="space-y-0.5">
+                              {catTools.map(tool => (
+                                <Link
+                                  key={tool.slug}
+                                  href={`/${tool.slug}`}
+                                  className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg hover:bg-surface-50 transition-colors group"
+                                >
+                                  <div className={`w-7 h-7 rounded-lg ${tool.color} flex items-center justify-center flex-shrink-0`}>
+                                    <ToolIcon name={tool.icon} color={tool.iconColor} size={13} />
+                                  </div>
+                                  <span className="text-sm font-medium text-slate-700 group-hover:text-brand-600 transition-colors">{tool.title}</span>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
                   </div>
                 )}
               </div>
-              <Link href="/about" className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-surface-50 transition-all">About</Link>
-              <Link href="/contact" className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-surface-50 transition-all">Contact</Link>
+
+              {/* Quick popular tool links */}
+              {POPULAR.map(name => {
+                const tool = tools.find(t => t.title === name)
+                return tool ? (
+                  <Link
+                    key={tool.slug}
+                    href={`/${tool.slug}`}
+                    className="px-3 py-2 text-sm font-bold text-slate-700 hover:text-brand-600 rounded-lg hover:bg-brand-50 transition-all"
+                  >
+                    {tool.title}
+                  </Link>
+                ) : null
+              })}
+
+              <Link href="/blog" className="px-3 py-2 text-sm font-bold text-slate-700 hover:text-brand-600 rounded-lg hover:bg-brand-50 transition-all">Blog</Link>
+              <Link href="/about" className="px-3 py-2 text-sm font-bold text-slate-700 hover:text-brand-600 rounded-lg hover:bg-brand-50 transition-all">About</Link>
             </nav>
 
             {/* Right — Search + CTA */}
-            <div className="hidden md:flex items-center gap-2">
+            <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
               <button
                 onClick={() => setSearchOpen(true)}
-                className="flex items-center gap-2 px-3 py-2 text-sm text-slate-500 hover:text-slate-900 rounded-lg hover:bg-surface-50 transition-all border border-slate-200 hover:border-slate-300"
+                aria-label="Search tools"
+                className="flex items-center justify-center w-9 h-9 text-slate-500 hover:text-brand-600 rounded-lg hover:bg-brand-50 transition-all border border-slate-200 hover:border-brand-200"
               >
                 <Search className="w-4 h-4" />
-                <span className="text-sm">Search tools...</span>
               </button>
-              <Link href="/#tools" className="px-4 py-2 text-sm font-semibold bg-brand-600 text-white rounded-xl hover:bg-brand-700 transition-colors shadow-sm">
-                Get Started — Free
+              <Link href="/#tools" className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold bg-gradient-to-br from-brand-500 to-brand-700 text-white rounded-xl hover:shadow-lg hover:shadow-brand-600/25 transition-all shadow-sm">
+                <Sparkles className="w-3.5 h-3.5" />
+                All Tools — Free
               </Link>
             </div>
 
             {/* Mobile */}
-            <button onClick={() => setOpen(!open)} className="md:hidden p-2 rounded-lg text-slate-600 hover:bg-surface-50 transition-colors">
+            <button onClick={() => setOpen(!open)} className="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-surface-50 transition-colors">
               {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
@@ -198,20 +233,38 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         {open && (
-          <div className="md:hidden bg-white border-t border-surface-100 px-4 py-4 space-y-1 max-h-[80vh] overflow-y-auto">
-            {tools.map(tool => (
-              <Link key={tool.slug} href={`/${tool.slug}`} onClick={() => setOpen(false)}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-surface-50 transition-colors">
-                <div className={`w-7 h-7 rounded-lg ${tool.color} flex items-center justify-center`}>
-                  <ToolIcon name={tool.icon} color={tool.iconColor} size={14} />
+          <div className="lg:hidden bg-white border-t border-surface-100 px-4 py-4 space-y-1 max-h-[80vh] overflow-y-auto">
+            <button
+              onClick={() => { setOpen(false); setSearchOpen(true) }}
+              className="w-full flex items-center gap-2 px-3 py-2.5 mb-2 text-sm text-slate-500 rounded-xl border border-slate-200"
+            >
+              <Search className="w-4 h-4" />
+              Search tools...
+            </button>
+            {CATEGORY_ORDER.map(catKey => {
+              const cat = categories[catKey]
+              const catTools = getToolsByCategory(catKey)
+              if (!cat || catTools.length === 0) return null
+              return (
+                <div key={catKey} className="pt-2">
+                  <div className="text-xs font-bold text-brand-600 uppercase tracking-wider mb-1 px-3">{cat.label}</div>
+                  {catTools.map(tool => (
+                    <Link key={tool.slug} href={`/${tool.slug}`} onClick={() => setOpen(false)}
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-surface-50 transition-colors">
+                      <div className={`w-7 h-7 rounded-lg ${tool.color} flex items-center justify-center`}>
+                        <ToolIcon name={tool.icon} color={tool.iconColor} size={14} />
+                      </div>
+                      <span className="text-sm font-medium text-slate-700">{tool.title}</span>
+                    </Link>
+                  ))}
                 </div>
-                <span className="text-sm font-medium text-slate-700">{tool.title}</span>
-              </Link>
-            ))}
+              )
+            })}
             <div className="pt-2 border-t border-surface-100 flex flex-col gap-1">
+              <Link href="/blog" onClick={() => setOpen(false)} className="px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-surface-50 rounded-xl">Blog</Link>
               <Link href="/about" onClick={() => setOpen(false)} className="px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-surface-50 rounded-xl">About</Link>
               <Link href="/contact" onClick={() => setOpen(false)} className="px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-surface-50 rounded-xl">Contact</Link>
-              <Link href="/#tools" onClick={() => setOpen(false)} className="mt-1 px-4 py-2.5 text-sm font-semibold text-center bg-brand-600 text-white rounded-xl">Get Started</Link>
+              <Link href="/#tools" onClick={() => setOpen(false)} className="mt-1 px-4 py-2.5 text-sm font-semibold text-center bg-gradient-to-br from-brand-500 to-brand-700 text-white rounded-xl">All Tools — Free</Link>
             </div>
           </div>
         )}

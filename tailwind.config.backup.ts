@@ -14,17 +14,17 @@ const config: Config = {
       },
       colors: {
         brand: {
-          50:  '#eef2ff',
-          100: '#e0e7ff',
-          200: '#c7d2fe',
-          300: '#a5b4fc',
-          400: '#818cf8',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
-          800: '#3730a3',
-          900: '#312e81',
-          950: '#1e1b4b',
+          50:  '#eef5ff',
+          100: '#d9e8ff',
+          200: '#bbd5ff',
+          300: '#8fb9ff',
+          400: '#5c93ff',
+          500: '#3670ff',
+          600: '#1a4ff5',
+          700: '#1440e1',
+          800: '#1635b6',
+          900: '#18308f',
+          950: '#121f57',
         },
         surface: {
           0:   '#ffffff',
@@ -41,7 +41,7 @@ const config: Config = {
       boxShadow: {
         card: '0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)',
         'card-hover': '0 4px 12px rgba(0,0,0,0.08), 0 16px 40px rgba(0,0,0,0.08)',
-        glow: '0 0 40px rgba(99, 102, 241, 0.18)',
+        glow: '0 0 40px rgba(54, 112, 255, 0.15)',
       },
       animation: {
         'fade-up': 'fadeUp 0.5s ease forwards',
@@ -73,3 +73,4 @@ const config: Config = {
 }
 
 export default config
+
