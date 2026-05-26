@@ -43,7 +43,7 @@ export default function ContactPage() {
                   <Mail className="w-5 h-5 text-brand-600" />
                 </div>
                 <h3 className="font-display font-600 text-sm text-slate-900 mb-1">Email</h3>
-                <p className="text-sm text-slate-500">tejdeal.social@gmail.com</p>
+                <p className="text-sm text-slate-500">support@tejdeal.com</p>
               </div>
               <div className="bg-white rounded-2xl p-5 border border-surface-100 shadow-card">
                 <div className="w-10 h-10 bg-violet-50 rounded-xl flex items-center justify-center mb-3">
@@ -124,4 +124,5 @@ export default function ContactPage() {
     </>
   )
 }
+
 

@@ -60,10 +60,10 @@ export default function Footer() {
             <p className="text-sm text-slate-400 leading-relaxed">
               The simplest, fastest PDF toolkit on the web. 20+ free tools. No signup. No watermarks. Ever.
             </p>
-            <a href="mailto:tejdeal.social@gmail.com"
+            <a href="mailto:support@tejdeal.com"
               className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors">
               <Mail className="w-4 h-4" />
-              tejdeal.social@gmail.com
+              support@tejdeal.com
             </a>
           </div>
 
@@ -132,5 +132,6 @@ export default function Footer() {
     </footer>
   )
 }
+
 
 

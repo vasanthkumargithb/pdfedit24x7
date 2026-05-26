@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         from: 'PDFEdit24x7 Contact <noreply@pdfedit24x7.com>',
-        to: ['tejdeal.social@gmail.com'],
+        to: ['support@tejdeal.com'],
         reply_to: email,
         subject: `[PDFEdit24x7 Contact] ${subject || 'New message'} — from ${name}`,
         html: `
@@ -108,4 +108,5 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Failed to send message. Please try again.' }, { status: 500 })
   }
 }
+
 

@@ -42,7 +42,7 @@ const sections = [
   },
   {
     title: '9. Contact',
-    body: 'For questions about these Terms, contact us at legal@pdfedit24x7.com.',
+    body: 'For questions about these Terms, contact us at support@tejdeal.com.',
   },
 ]
 
@@ -87,8 +87,8 @@ export default function TermsPage() {
           <div className="mt-12 p-5 bg-surface-50 rounded-2xl border border-surface-100 text-center">
             <p className="text-sm text-slate-500">
               Have questions? Contact us at{' '}
-              <a href="mailto:legal@pdfedit24x7.com" className="text-brand-600 hover:underline font-medium">
-                legal@pdfedit24x7.com
+              <a href="mailto:support@tejdeal.com" className="text-brand-600 hover:underline font-medium">
+                support@tejdeal.com
               </a>
             </p>
           </div>
@@ -99,4 +99,5 @@ export default function TermsPage() {
     </>
   )
 }
+
 

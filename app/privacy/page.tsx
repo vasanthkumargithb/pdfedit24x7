@@ -39,7 +39,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="font-display font-600 text-xl text-slate-900 mb-3">5. Contact</h2>
-              <p className="text-slate-600 leading-relaxed">For any privacy-related questions, contact us at <a href="mailto:privacy@pdfedit24x7.com" className="text-brand-600 hover:underline">privacy@pdfedit24x7.com</a>.</p>
+              <p className="text-slate-600 leading-relaxed">For any privacy-related questions, contact us at <a href="mailto:support@tejdeal.com" className="text-brand-600 hover:underline">support@tejdeal.com</a>.</p>
             </section>
           </div>
         </div>
@@ -48,4 +48,5 @@ export default function PrivacyPage() {
     </>
   )
 }
+
 
